@@ -1,3 +1,4 @@
+import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import {
   Button,
@@ -8,8 +9,7 @@ import {
   Text,
   TextInput,
   View,
-  Modal,
-  SafeAreaView,
+  Modal
 } from "react-native";
 
 export default function App() {
@@ -21,7 +21,7 @@ export default function App() {
 
   const handleChange = (text) => {
     setName({ name: text, id: use + 1 });
-    // otra forma de poner id= setName({ name: text, id: Date.now()});
+   // otra forma de poner id= setName({ name: text, id: Date.now()});
   };
 
   const handleSupport = () => {
@@ -34,7 +34,7 @@ export default function App() {
       } else {
         alert("Lo que escribas debe tener mas de 3 caracteres");
       }
-    } else {
+    }else{
       alert("Escribe algo en el input por favor");
     }
   };
@@ -44,18 +44,8 @@ export default function App() {
     setUse(use - 1);
   };
 
-
-  const selectItems = (item) => {
-    setSelectedItems(item);
-    setModalVisible(true);
-  };
-
-  const [modalVisible, setModalVisible] = useState(false);
-  const [selectedItems, setSelectedItems] = useState(null);
-
-  return (
   
-   
+  return (
     <View style={styles.screen}>
       <View style={styles.viewStyle}>
         <TextInput
@@ -73,11 +63,9 @@ export default function App() {
           color={"black"}
         />
       </View>
-      <View>
-        <Text style={styles.result}>{use}</Text>
-        <Text>{items.title}</Text>
-      </View>
-
+      
+      <Text style={styles.result}>{use}</Text>
+      <Text>{items.title}</Text>
       {/* {items.map((item) => {
         return (
           <View key={item.id}>
@@ -92,37 +80,29 @@ export default function App() {
           </View>
         );
       })} */}
-
       <FlatList
-        data={items}
-        renderItem={(itemData) => (
-          <View style={styles.element} >
-            <Pressable
-             style={styles.contentList}
-              onPress={() => selectItems(itemData.item.id)}
-            >
-              <Text style={styles.element}>{itemData.item.name}</Text>
-            </Pressable>
-          </View>
-        )}
-        keyExtractor={(item) => item.id}
-        
-      />
-
-      <Modal animationType="slide" transparent={true} visible={modalVisible}>
-        <View style={styles.modalContainer}>
-          <View style={styles.modalTitle}>
-            <Text style={styles.modalText}>Eliminar item?</Text>
-          </View>
-          <View>
-            <Button
-              title="Cancelar"
-              onPress={() => setModalVisible(false)}
-            ></Button>
-          </View>
+      data={items}
+      renderItem={(itemData) => {
+        return(
+          <View style={styles.element} key={itemData.item.id}>
+       
+        <Pressable key={itemData.item.id} onPress={()=>{console.log(itemData.item.id)}}> 
+        <Text style={styles.element}>{itemData.item.name}</Text>
+        </Pressable>
+         <Button
+                  title="Eliminar"
+                  onPress={() => handleDelete(itemData.item.id)}
+                  color={"red"}
+                /> 
+               
         </View>
-      </Modal>
-    </View>  
+        )
+      }
+      }
+      >
+
+      </FlatList> 
+    </View>
   );
 }
 
@@ -159,38 +139,25 @@ const styles = StyleSheet.create({
     backgroundColor: "grey",
     borderRadius: 10,
     fontWeight: "bold",
-    overflow: "hidden",
-    color: "white",
+    overflow:"hidden",
+    color:"white"
   },
-  contentList: {
-    padding: 10,
-    borderRadius: 5,
-    width:"100%",
-    backgroundColor: "#ccc",
+  modalContainer:{
+    height:400,
+    width:300,
+    marginTop:100,
+    alignSelf:'center',
+    backgroundColor:"lime"
   },
-  modalContainer: {
-    height: 200,
-    width: 350,
-    marginTop: 50,
-    alignSelf: "center",
-
-    backgroundColor: "whitesmoke",
-    borderRadius: 15,
+  modalTitle:{
+    padding:10,
+    borderRadius:5,
   },
-  modalTitle: {
-    padding: 10,
-    borderRadius: 5,
+  modalContent:{
+    padding:10,
+    width:"50%"
   },
-  modalContent: {
-    padding: 10,
-    width: "50%",
-  },
-  modalAction: {
-    padding: 22,
-  },
-  modalText: {
-    textAlign: "center",
-    fontSize: 18,
-    fontWeight: "500",
-  },
+  modalAction:{
+    padding:22
+  }
 });
