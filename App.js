@@ -11,6 +11,7 @@ import {
   Modal,
   SafeAreaView,
 } from "react-native";
+import { Blackbutton } from "./components/Buttons";
 
 export default function App() {
   const [use, setUse] = useState(0);
@@ -56,6 +57,7 @@ export default function App() {
 
   return (
     <View style={styles.screen}>
+       <Blackbutton />
       <View style={styles.viewStyle}>
         <TextInput
           placeholder="Item de lista"
@@ -91,7 +93,6 @@ export default function App() {
         )}
         keyExtractor={(item) => item.id}
       />
-
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.modalContainer}>
           <View style={styles.modalTitle}>
@@ -99,23 +100,28 @@ export default function App() {
           </View>
           <View style={styles.modalContent}>
             <Text style={styles.textDelete}>
-              ¿Esta seguro que quiere eliminar {selectedItems?.name} del item?     
+              ¿Esta seguro que quiere eliminar {selectedItems?.name} del item?
             </Text>
           </View>
           <View style={styles.modalAction}>
             <Button
               title="Cancelar"
-              style={{backgroundColor:"red"}}
+              color={"black"}
               onPress={() => setModalVisible(false)}
             ></Button>
             <Button
               onPress={() => handleDelete(selectedItems.id)}
               title="Eliminar"
+              color={"black"}
             ></Button>
           </View>
         </View>
       </Modal>
+      
+     
+      
     </View>
+
   );
 }
 
@@ -129,9 +135,7 @@ const styles = StyleSheet.create({
   },
   element: {
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginTop: 10,
+    color: "white",
   },
   viewStyle: {
     marginTop: 20,
@@ -156,10 +160,13 @@ const styles = StyleSheet.create({
     color: "white",
   },
   contentList: {
-    padding: 10,
-    borderRadius: 5,
+    marginVertical: 5,
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+    alignItems: "center",
+    borderRadius: 10,
     width: "100%",
-    backgroundColor: "#ccc",
+    backgroundColor: "violet",
   },
   modalContainer: {
     height: 200,
@@ -173,7 +180,6 @@ const styles = StyleSheet.create({
   modalTitle: {
     padding: 10,
     borderRadius: 5,
-   
   },
   modalContent: {
     padding: 10,
@@ -188,15 +194,16 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 18,
     fontWeight: "500",
+    paddingTop: 5,
   },
-  textDelete:{
-    textAlign:"center",
-    padding:25,
+  textDelete: {
+    textAlign: "center",
+    padding: 25,
   },
-  buttonModal:{
-    borderWidth:5,
-    borderColor:"red",
-    color:"red",
-    backgroundColor:"red"
-  }
+  buttonModal: {
+    borderWidth: 5,
+    borderColor: "red",
+    color: "red",
+    backgroundColor: "red",
+  },
 });
