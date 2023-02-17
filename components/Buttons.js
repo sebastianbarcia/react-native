@@ -14,12 +14,12 @@ export function Blackbutton() {
 const styles = StyleSheet.create({
   button: {
     zIndex:99,
-    bottom:-100,
+    bottom: 0,
     alignSelf: "center",
     paddingVertical: 15,
     width: "90%",
     borderRadius:10,
-    position:"absolute"   
+    position:"absolute",   
   },
   buttonText:{
     textAlign:"center",
