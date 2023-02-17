@@ -40,10 +40,11 @@ export default function App() {
   };
 
   const handleDelete = (id) => {
+    console.log(id);
     setItems(items.filter((item) => item.id !== id));
     setUse(use - 1);
+    setModalVisible(false);
   };
-
 
   const selectItems = (item) => {
     setSelectedItems(item);
@@ -54,8 +55,6 @@ export default function App() {
   const [selectedItems, setSelectedItems] = useState(null);
 
   return (
-  
-   
     <View style={styles.screen}>
       <View style={styles.viewStyle}>
         <TextInput
@@ -78,51 +77,45 @@ export default function App() {
         <Text>{items.title}</Text>
       </View>
 
-      {/* {items.map((item) => {
-        return (
-          <View key={item.id}>
-              <View style={styles.element}>
-                <Text>{item.name}</Text>
-                <Button
-                  title="Eliminar"
-                  onPress={() => handleDelete(item.id)}
-                  color={"red"}
-                />
-              </View>
-          </View>
-        );
-      })} */}
-
       <FlatList
         data={items}
         renderItem={(itemData) => (
-          <View style={styles.element} >
+          <View style={styles.element}>
             <Pressable
-             style={styles.contentList}
-              onPress={() => selectItems(itemData.item.id)}
+              style={styles.contentList}
+              onPress={() => selectItems(itemData.item)}
             >
               <Text style={styles.element}>{itemData.item.name}</Text>
             </Pressable>
           </View>
         )}
         keyExtractor={(item) => item.id}
-        
       />
 
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.modalContainer}>
           <View style={styles.modalTitle}>
-            <Text style={styles.modalText}>Eliminar item?</Text>
+            <Text style={styles.modalText}>Eliminar item</Text>
           </View>
-          <View>
+          <View style={styles.modalContent}>
+            <Text style={styles.textDelete}>
+              ¿Esta seguro que quiere eliminar {selectedItems?.name} del item?     
+            </Text>
+          </View>
+          <View style={styles.modalAction}>
             <Button
               title="Cancelar"
+              style={{backgroundColor:"red"}}
               onPress={() => setModalVisible(false)}
+            ></Button>
+            <Button
+              onPress={() => handleDelete(selectedItems.id)}
+              title="Eliminar"
             ></Button>
           </View>
         </View>
       </Modal>
-    </View>  
+    </View>
   );
 }
 
@@ -165,7 +158,7 @@ const styles = StyleSheet.create({
   contentList: {
     padding: 10,
     borderRadius: 5,
-    width:"100%",
+    width: "100%",
     backgroundColor: "#ccc",
   },
   modalContainer: {
@@ -180,17 +173,30 @@ const styles = StyleSheet.create({
   modalTitle: {
     padding: 10,
     borderRadius: 5,
+   
   },
   modalContent: {
     padding: 10,
-    width: "50%",
+    alignItems: "center",
+    width: "100%",
   },
   modalAction: {
-    padding: 22,
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
   modalText: {
     textAlign: "center",
     fontSize: 18,
     fontWeight: "500",
   },
+  textDelete:{
+    textAlign:"center",
+    padding:25,
+  },
+  buttonModal:{
+    borderWidth:5,
+    borderColor:"red",
+    color:"red",
+    backgroundColor:"red"
+  }
 });
