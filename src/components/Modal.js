@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
         paddingVertical:Platform.OS === 'ios'? 8 : 0,
       },
       btnCancel:{
-
         borderRightWidth: Platform.OS === 'ios' ?  0.5 : 0,
       },
       btnConfirm:{
