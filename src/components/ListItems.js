@@ -1,5 +1,6 @@
-import { StyleSheet, Text, View, FlatList, Pressable, TouchableOpacity } from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 import React from "react";
+import TouchableButton from "./TouchableButton";
 
 const ListItems = ({ items, selectItems }) => {
   return (
@@ -7,12 +8,7 @@ const ListItems = ({ items, selectItems }) => {
       data={items}
       renderItem={(itemData) => (
         <View style={styles.element}>
-          <TouchableOpacity
-            style={styles.contentList}
-            onPress={() => selectItems(itemData.item)}
-          >
-            <Text style={styles.element}>{itemData.item.name}</Text>
-          </TouchableOpacity>
+          <TouchableButton itemData={itemData} selectItems={selectItems} />
         </View>
       )}
       keyExtractor={(item) => item.id}
@@ -25,15 +21,5 @@ export default ListItems;
 const styles = StyleSheet.create({
   element: {
     flexDirection: "row",
-    color: "white",
-  },
-  contentList: {
-    marginVertical: 5,
-    paddingVertical: 20,
-    paddingHorizontal: 10,
-    alignItems: "center",
-    borderRadius: 10,
-    width: "100%",
-    backgroundColor: "violet",
   },
 });
