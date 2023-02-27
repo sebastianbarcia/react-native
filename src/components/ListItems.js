@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, Pressable } from "react-native";
+import { StyleSheet, Text, View, FlatList, Pressable, TouchableOpacity } from "react-native";
 import React from "react";
 
 const ListItems = ({ items, selectItems }) => {
@@ -7,12 +7,12 @@ const ListItems = ({ items, selectItems }) => {
       data={items}
       renderItem={(itemData) => (
         <View style={styles.element}>
-          <Pressable
+          <TouchableOpacity
             style={styles.contentList}
             onPress={() => selectItems(itemData.item)}
           >
             <Text style={styles.element}>{itemData.item.name}</Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
       )}
       keyExtractor={(item) => item.id}
