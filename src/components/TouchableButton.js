@@ -1,13 +1,13 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import React from "react";
 
-const TouchableButton = ({ itemData, selectItems }) => {
+const TouchableButton = ({ itemData, selectItems, textData, colorBtn }) => {
   return (
     <TouchableOpacity
-      style={styles.contentList}
-      onPress={() => selectItems(itemData.item)}
+      style={[styles.contentList, colorBtn]}
+      onPress={() => selectItems(itemData)}
     >
-      <Text style={styles.textButton}>{itemData.item.name}</Text>
+      <Text style={styles.textButton}>{textData}</Text>
     </TouchableOpacity>
   );
 };
@@ -16,13 +16,9 @@ export default TouchableButton;
 
 const styles = StyleSheet.create({
   contentList: {
-    marginVertical: 5,
-    paddingVertical: 20,
-    paddingHorizontal: 10,
+   
     alignItems: "center",
-    borderRadius: 10,
     width: "100%",
-    backgroundColor: "violet",
   },
   textButton: {
     color: "white",

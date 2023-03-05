@@ -8,7 +8,12 @@ const ListItems = ({ items, selectItems }) => {
       data={items}
       renderItem={(itemData) => (
         <View style={styles.element}>
-          <TouchableButton itemData={itemData} selectItems={selectItems} />
+          <TouchableButton
+            colorBtn={styles.colorBtn}
+            textData={itemData.item.name}
+            itemData={itemData.item}
+            selectItems={selectItems}
+          />
         </View>
       )}
       keyExtractor={(item) => item.id}
@@ -21,5 +26,12 @@ export default ListItems;
 const styles = StyleSheet.create({
   element: {
     flexDirection: "row",
+  },
+  colorBtn: {
+    marginVertical: 5,
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+    borderRadius: 10,
+    backgroundColor: "violet",
   },
 });

@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     fontWeight: "bold",
     overflow: "hidden",
-    color: "white",
+    color: "white", 
   },
   countBackAmount: {
     backgroundColor: "#77C6DC",

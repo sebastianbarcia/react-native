@@ -2,6 +2,7 @@ import { StyleSheet, Text, View ,  Modal, Button , Platform } from 'react-native
 import React from 'react'
 
 const ModalAction = ({modalVisible , selectedItems , setModalVisible , handleDelete}) => {
+  
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.modalContainer}>
@@ -10,7 +11,9 @@ const ModalAction = ({modalVisible , selectedItems , setModalVisible , handleDel
           </View>
           <View style={styles.modalContent}>
             <Text style={styles.textDelete}>
-              ¿Esta seguro que quiere eliminar {selectedItems?.name} del item?
+              {(!selectedItems?.name) ? (`${selectedItems}`)  :  (`¿Esta seguro que quiere eliminar ${selectedItems?.name} del item?`)}
+              
+            
             </Text>
           </View>
           <View style={styles.modalAction}>

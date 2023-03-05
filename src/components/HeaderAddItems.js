@@ -11,10 +11,9 @@ const HeaderAddItems = ({ name, handleChange, handleSupport }) => {
         type="text"
         value={name}
         onChangeText={handleChange}
+        maxLength={12}
       ></TextInput>
-
       <Button
-        style={styles.button}
         title="Agregar"
         onPress={handleSupport}
         color={"black"}
@@ -35,10 +34,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     width: 200,
     height: 35,
-  },
-  button: {
-    color: "red",
-    backgroundColor: "red",
   },
 });
 
