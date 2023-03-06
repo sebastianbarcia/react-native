@@ -1,4 +1,4 @@
-import { useState , useCallback } from "react";
+import { useState , useCallback , useEffect } from "react";
 import { StyleSheet, View , Text } from "react-native";
 import {
   CounterItems,
@@ -11,11 +11,11 @@ import {
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
-
 SplashScreen.preventAutoHideAsync();
 
 const Home = ({ setCount, setItems, setEqual, items,  count }) => {
-  
+ 
+ 
   const [name, setName] = useState();
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -111,7 +111,7 @@ const Home = ({ setCount, setItems, setEqual, items,  count }) => {
 /*ESTILO: se puede definir estilos en linea o definir con una stylesheet*/
 
 const styles = StyleSheet.create({
-  screen: { padding: 30, marginTop:50 },
+  screen: { padding: 30, marginTop:50, height:"100%" },
   title:{fontFamily:"luckiestguy" , fontSize:20,  textAlign: "center" }
 });
 
