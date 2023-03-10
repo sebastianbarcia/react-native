@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
       },
       text:{
-        color:"grey"
+        color:"grey",
+        fontFamily:"RockSalt_400Regular"
       }
 })

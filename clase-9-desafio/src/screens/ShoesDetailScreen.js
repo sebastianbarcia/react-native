@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
         height: heightPixel(100) 
       },
       text:{
-        color:"grey"
+        color:"grey",
+        fontFamily:"RockSalt_400Regular"
       }
 })
