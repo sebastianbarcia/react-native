@@ -1,20 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useFonts, RockSalt_400Regular } from '@expo-google-fonts/rock-salt';
+import * as SplashScreen from 'expo-splash-screen'
+import { useEffect } from 'react';
+import ShopNavigator from './src/navigatiors/ShopNavigator';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+
+  let [fontsLoaded] = useFonts({
+    RockSalt_400Regular,
+  });
+
+  useEffect(() => {
+    if(fontsLoaded){
+      SplashScreen.hideAsync();
+    }
+  })
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <ShopNavigator/>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
