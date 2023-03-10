@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View ,  Modal, Button , Platform } from 'react-native'
 import React from 'react'
+import { fontPixel, heightPixel, pixelSizeHorizontal, widthPixel } from '../utils/Normalize'
 
 const ModalAction = ({modalVisible , selectedItems , setModalVisible , handleDelete}) => {
   
@@ -12,8 +13,6 @@ const ModalAction = ({modalVisible , selectedItems , setModalVisible , handleDel
           <View style={styles.modalContent}>
             <Text style={styles.textDelete}>
               {(!selectedItems?.name) ? (`${selectedItems}`)  :  (`¿Esta seguro que quiere eliminar ${selectedItems?.name} del item?`)}
-              
-            
             </Text>
           </View>
           <View style={styles.modalAction}>
@@ -41,8 +40,7 @@ export default ModalAction
 
 const styles = StyleSheet.create({
     modalContainer: {
-        height: 190,
-        width: 350,
+        width: widthPixel(350),
         marginTop: 50,
         alignSelf: "center",
         backgroundColor: "whitesmoke",
@@ -50,13 +48,16 @@ const styles = StyleSheet.create({
       },
       btnGroupModal:{
         borderColor:"#D1D1D6",
-        width:Platform.OS === 'ios'? "50%" : "30%",
+        width:Platform.OS === 'ios'? "50%" : "40%",
         paddingVertical:Platform.OS === 'ios'? 8 : 0,
+        marginBottom: Platform.OS === "android" && 20
       },
       btnCancel:{
+        
         borderRightWidth: Platform.OS === 'ios' ?  0.5 : 0,
       },
       btnConfirm:{
+       
         borderLeftWidth: Platform.OS === 'ios' ? 0.5 : 0,
       },
       modalTitle: {
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
       },
       modalText: {
         textAlign: "center",
-        fontSize: 18,
+        fontSize: fontPixel(18),
         fontWeight: "500",
         paddingTop: 8,
       },

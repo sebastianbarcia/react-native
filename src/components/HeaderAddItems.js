@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { View, StyleSheet, Button, TextInput } from "react-native";
+import { View, StyleSheet, Button, TextInput, Dimensions, Platform } from "react-native";
+import { widthPixel } from "../utils/Normalize";
 
 const HeaderAddItems = ({ name, handleChange, handleSupport }) => {
+  useEffect(() => {
+    console.log("screen width" , Platform.OS , Dimensions.get('window').width)
+    console.log("screen heigth" ,Platform.OS , Dimensions.get('window').height)
+  })
   return (
     <View style={styles.viewStyle}>
       <TextInput
@@ -32,7 +37,10 @@ const styles = StyleSheet.create({
   input: {
     borderBottomColor: "black",
     borderBottomWidth: 1,
-    width: 200,
+    width: "60%",
+    //tambien se puede hacer asi 
+    //width: Dimensions.get('window').width / 1 ,
+    maxWidth: widthPixel(200),
     height: 35,
   },
 });

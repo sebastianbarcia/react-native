@@ -1,7 +1,7 @@
 import { StyleSheet, View, FlatList } from "react-native";
 import React from "react";
 import TouchableButton from "./TouchableButton";
-
+import { pixelSizeHorizontal , pixelSizeVertical } from "../utils/Normalize";
 const ListItems = ({ items, selectItems }) => {
   return (
     <FlatList
@@ -28,9 +28,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   colorBtn: {
-    marginVertical: 5,
-    paddingVertical: 20,
-    paddingHorizontal: 10,
+    marginVertical: pixelSizeVertical(5),
+    paddingVertical: pixelSizeVertical(20),
+    paddingHorizontal: pixelSizeHorizontal(10),
     borderRadius: 10,
     backgroundColor: "violet",
   },

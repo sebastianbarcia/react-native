@@ -1,5 +1,5 @@
-import { useState , useCallback , useEffect } from "react";
-import { StyleSheet, View , Text } from "react-native";
+import { useState, useCallback, useEffect } from "react";
+import { StyleSheet, View, Text, Platform, SafeAreaView } from "react-native";
 import {
   CounterItems,
   HeaderAddItems,
@@ -7,15 +7,13 @@ import {
   ModalAction,
   AllDeleteButtons,
 } from "../index";
-
-import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
-
+import { fontPixel } from "../utils/Normalize";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import { KeyboardAvoidingView } from "react-native";
 SplashScreen.preventAutoHideAsync();
 
-const Home = ({ setCount, setItems, setEqual, items,  count }) => {
- 
- 
+const Home = ({ setCount, setItems, setEqual, items, count }) => {
   const [name, setName] = useState();
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -24,15 +22,14 @@ const Home = ({ setCount, setItems, setEqual, items,  count }) => {
   const [modalAllDelete, setModalAllDelete] = useState(false);
 
   const [fontsLoaded] = useFonts({
-    'luckiestguy': require('../../assets/fonts/LuckiestGuy-Regular.ttf'),
- });
+    luckiestguy: require("../../assets/fonts/LuckiestGuy-Regular.ttf"),
+  });
 
-  const onLayoutRootView = useCallback
-  (async () => {
-     if (fontsLoaded) {
-       await SplashScreen.hideAsync();
-     }
-   }, [fontsLoaded]);
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
 
   const handleChange = (text) => {
     setName({ name: text, id: Date.now() });
@@ -74,9 +71,14 @@ const Home = ({ setCount, setItems, setEqual, items,  count }) => {
   return (
     <>
       {/*header views*/}
+        {/* <Text>hola</Text> */}
       <>
-        <View style={styles.screen} onLayout={onLayoutRootView}>
-          <Text style={styles.title}>Introduce tu nombre, si se repiten veras que pasa </Text>
+      {/* <KeyboardAvoidingView behavior={Platform.OS !== 'ios' ? 'padding' : 'position'}>  */}
+        <SafeAreaView  onLayout={onLayoutRootView}>
+          <View style={styles.screen}>
+          <Text style={styles.title}>
+            Introduce tu nombre, si se repiten veras que pasa{" "}
+          </Text>
           <HeaderAddItems
             name={name}
             handleChange={handleChange}
@@ -87,6 +89,8 @@ const Home = ({ setCount, setItems, setEqual, items,  count }) => {
           {/*results*/}
           <ListItems items={items} selectItems={selectItems} />
         </View>
+          </SafeAreaView>
+           {/* </KeyboardAvoidingView> */}
         <AllDeleteButtons items={items} setModalAllDelete={setModalAllDelete} />
       </>
       {/*modals*/}
@@ -111,8 +115,12 @@ const Home = ({ setCount, setItems, setEqual, items,  count }) => {
 /*ESTILO: se puede definir estilos en linea o definir con una stylesheet*/
 
 const styles = StyleSheet.create({
-  screen: { padding: 30, marginTop:50, height:"100%" },
-  title:{fontFamily:"luckiestguy" , fontSize:20,  textAlign: "center" }
+  screen: { padding: 30 , height: "100%" },
+  title: {
+    fontFamily: "luckiestguy",
+    fontSize: fontPixel(20),
+    textAlign: "center",
+  },
 });
 
 export default Home;
