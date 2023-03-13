@@ -22,7 +22,7 @@ const CategoryShoes = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>CategoryShoes</Text>
-      <Button color={"grey"} title='Ir a detalles' onPress={() => navigation.navigate('Shoes')}></Button>
+      <Button  color={Platform.OS == 'ios' ? 'white' : 'black'} title='Ir a detalles' onPress={() => navigation.navigate('Shoes')}></Button>
     </View>
   )
 }

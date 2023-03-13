@@ -5,7 +5,7 @@ const Performances = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>performance</Text>
-      <Button color={"white"} title='Ir a home' onPress={() => navigation.navigate('Home')}></Button>
+      <Button  color={Platform.OS == 'ios' ? 'white' : 'black'} title='Ir a home' onPress={() => navigation.navigate('Home')}></Button>
     </View>
   )
 }

@@ -8,7 +8,7 @@ const ShoesDetailScreen = ({navigation}) => {
     <View style={styles.container}>
         <Image style={styles.img} source={require("../../assets/zapatillas.webp")}></Image>
       <Text style={styles.text}>ShoesDetailScreen</Text>
-      <Button color={"white"} title='Ir a performance' onPress={() => navigation.navigate('Performance')}></Button>
+      <Button color={Platform.OS == 'ios' ? 'white' : 'black'} title='Ir a performance' onPress={() => navigation.navigate('Performance')}></Button>
     </View>
   )
 }
